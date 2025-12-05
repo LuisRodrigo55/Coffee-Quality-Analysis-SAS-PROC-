@@ -1,2 +1,21 @@
 # Coffee-Quality-Analysis-SAS-PROC-
 Analisys on coffee quality dataset using SAS.
+
+This is a repository analyzing a coffee quality dataset, here you can find basic functions and the process of analysis using SAS PROC with SQL and SAS Functions,
+
+Dataset
+The dataset used is an open source from Kaggle, I will share the link to the original dataset, but I will attach also a dataset pre-clean to the repository locatged in the data folder.
+
+Variables of Interest
+Total_Cup_Points, This is the target variable (overall quality score).
+Aroma, Flavor, Acidity, Body, Balance, Sweetness, are the individual values of score quality metrics.
+Country_of_Origin, Variety, Processing_Method, are the Categorical variables.
+
+About the environment, you can run it in SAS Studio, SAS Enterprise Guide, just need to upload the file to the environment.
+
+
+
+
+
+
+
