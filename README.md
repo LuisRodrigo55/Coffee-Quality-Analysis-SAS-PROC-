@@ -13,7 +13,26 @@ Country_of_Origin, Variety, Processing_Method, are the Categorical variables.
 
 About the environment, you can run it in SAS Studio, SAS Enterprise Guide, just need to upload the file to the environment.
 
+Script:
+The purpose of having one induvial script and the sequential executions is to demonstrates the capabilities of PROC functions across the entire data science pipeline.
 
+The script demonstrates these functions (all following a logical sequence):
+
+    1. PROC PRINT.
+
+    2. PROC SORT.
+	
+    3: PROC MEANS and PROC UNIVARIATE.
+
+    4: PROC FREQ.
+
+    5: PROC REPORT (PROC TABULATE is also present in this section).
+
+    6: PROC REG (statistical modeling).
+
+    7: PROC EXPORT and PROC COPY for data management.
+
+    8: PROC SQL querying and aggregation.
 
 
 
