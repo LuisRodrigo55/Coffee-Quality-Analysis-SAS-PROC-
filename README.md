@@ -35,6 +35,10 @@ The script demonstrates these functions (all following a logical sequence):
     8: PROC SQL querying and aggregation.
 
 
+Insights:
+- The linear regression model indicated that the Flavor and Aroma are the most statistically significant predictors of our target Total_Cup_Points.
+- Coffees from Ethiopia and Colombia consistently showed the highest average Total_Cup_Points when summarized by PROC MEANS.
+- The chi square test from PROC FREQ indicates that there is a significant association between Washed/Wet processing and high-scoring Arabica species.
 
 
 
