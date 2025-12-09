@@ -2,7 +2,18 @@
 -------------------------------------------------------------------------
 This script contains 8 categories of SAS PROCs for data science (most common and used).
 
+IMPORT DATA
+-------------------------------------------------------------------------
+This is the import of the data into the SAS Environment, the table is allocated in the work space
 
+FILENAME COFFEE_FILE 'uploaded:Coffee-modified.csv';
+
+PROC IMPORT DATAFILE=COFFEE_FILE
+    OUT=work.Coffee
+    DBMS=CSV
+    REPLACE;
+    GETNAMES=YES;
+RUN;
 
 
 
