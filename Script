@@ -15,6 +15,15 @@ PROC IMPORT DATAFILE=COFFEE_FILE
     GETNAMES=YES;
 RUN;
 
+TITLE 'Coffee Quality Data Analysis';
+
+/* Data Visualization with the PROC PRINT, this will display the content of the table*/
+TITLE3 'Data Visualization (PROC PRINT)';
+PROC PRINT DATA=work.Coffee (OBS=20); /*We will display the first 20 observations */
+    VAR ID Country_of_Origin Variety Total_Cup_Points Aroma Flavor;
+    LABEL Total_Cup_Points='Total Score';
+RUN;
+
 
 
 
