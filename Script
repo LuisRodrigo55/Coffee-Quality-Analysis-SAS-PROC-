@@ -24,6 +24,19 @@ PROC PRINT DATA=work.Coffee (OBS=20); /*We will display the first 20 observation
     LABEL Total_Cup_Points='Total Score';
 RUN;
 
+/* Data Sorting (PROC SORT) This will arrange the observations by the 4 most relevant variables (Total Score, Aroma, Country, Variety), it also will prepares the data for ordered reporting or group processing. */
+
+TITLE3 'Data Sorting (PROC SORT)';
+
+PROC SORT DATA=work.Coffee OUT=work.Coffee_Sorted;
+    BY DESCENDING Total_Cup_Points DESCENDING Aroma Country_of_Origin Variety;
+RUN;
+
+/* Preview to validate its printing the top 5 records */
+PROC PRINT DATA=work.Coffee_Sorted (OBS=5);
+    VAR Total_Cup_Points Aroma Country_of_Origin Variety;
+RUN;
+
 
 
 
