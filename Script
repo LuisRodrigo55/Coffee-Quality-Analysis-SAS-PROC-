@@ -37,6 +37,21 @@ PROC PRINT DATA=work.Coffee_Sorted (OBS=5);
     VAR Total_Cup_Points Aroma Country_of_Origin Variety;
 RUN;
 
+/*Data summary and calculation of mean, median, standard deviation, min, and max for key scores */
+
+TITLE3 'Summary(PROC MEANS)';
+
+PROC MEANS DATA=work.Coffee N MEAN MEDIAN STD MIN MAX;
+    VAR Total_Cup_Points Aroma Flavor Acidity Body Balance Sweetness;
+    CLASS Country_of_Origin; /* Group statistics by country*/
+RUN;
+
+TITLE3 'Detailed Univariate Statistics (PROC UNIVARIATE)';
+
+PROC UNIVARIATE DATA=work.Coffee PLOT;
+    VAR Total_Cup_Points;
+    OUTPUT OUT=work.Total_Score_Stats MEAN=Mean_Score STD=StdDev_Score; /* Save key stats to a new dataset */
+RUN;
 
 
 
