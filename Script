@@ -55,6 +55,19 @@ RUN;
 
 
 
+/*Frequency and Crosstabulation Tables (PROC FREQ), this section shows the amount of observations and relationships between categorical variables*/
+
+TITLE3 'Frequency and Crosstabulation Tables (PROC FREQ)';
+
+PROC FREQ DATA=work.Coffee;
+    TABLE Country_of_Origin / OUT=work.Country_Counts NOPRINT; /* Save counts without printing*/
+RUN;
+
+/* Two-way Crosstabulation, Processing Method vs. Species */
+PROC FREQ DATA=work.Coffee;
+    TABLE Processing_Method * Species / CHISQ EXPECTED DEVIATION; /* Add chi-square test for association */
+    TITLE4 'Processing Method by Coffee Species';
+RUN;
 
 
 
