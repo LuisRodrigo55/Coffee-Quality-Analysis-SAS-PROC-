@@ -73,4 +73,32 @@ RUN;
 
 
 
+/*Reporting (PROC REPORT), this section creates customized, professional, and complex reports */
+
+TITLE3 'Custom Reporting (PROC REPORT)';
+
+/* Create a detailed report summarizing average quality scores by Country and Variety */
+PROC REPORT DATA=work.Coffee_Sorted NOWINDOW HEADSKIP;
+    COL Country_of_Origin Variety N Total_Cup_Points Aroma Flavor Acidity;
+
+    /* Define Grouping Variables */
+    GROUP Country_of_Origin;
+    DEFINE Country_of_Origin / GROUP 'Country';
+    DEFINE Variety / DISPLAY 'Variety';
+
+    /* Define Summary Statistics for Numerical Variables */
+    DEFINE N / N 'Count' FORMAT=5.;
+    DEFINE Total_Cup_Points / MEAN FORMAT=6.2 'Average Total Score';
+    DEFINE Aroma / MEAN FORMAT=5.2 'Avg Aroma';
+    DEFINE Flavor / MEAN FORMAT=5.2 'Avg Flavor';
+    DEFINE Acidity / MEAN FORMAT=5.2 'Avg Acidity';
+
+    BREAK AFTER Country_of_Origin / SKIP; /* Add a line break after each country group */
+
+    RBREAK AFTER / SUM; /* Add a grand total row */
+RUN;
+
+
+
+
 
