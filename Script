@@ -102,3 +102,96 @@ RUN;
 
 
 
+
+
+
+/* Statistical Modeling (PROC REG), The idea is to run a simple linear regression to see if Aroma and Flavor predict the Total Score */
+
+TITLE3 'Statistical Modeling (PROC REG)';
+
+
+PROC REG DATA=work.Coffee;
+    MODEL Total_Cup_Points = Aroma Flavor Aftertaste Acidity Body Balance;
+    PLOT RESIDUAL. * PREDICTED. / HLABEL='Predicted Score' VLABEL='Residuals';
+    OUTPUT OUT=work.Reg_Results P=Predicted_Score R=Residual_Value; 
+RUN;
+QUIT; 
+
+
+/* Data Management/File I/O (PROC EXPORT and PROC COPY), here the idea is to export the regression results*/
+
+TITLE3 'Data Export (PROC EXPORT)';
+
+PROC EXPORT DATA=work.Reg_Results
+    OUTFILE='./Reg_Results_Export.csv' 
+    DBMS=CSV
+    REPLACE;
+RUN;
+
+
+
+TITLE3 'File Management (PROC COPY)';
+
+/* I leave this code as reference, the PROC COPY, copies entire SAS files datasets from one library to another. Here, we copy from the temporary WORK library to the permanent USER library. */
+
+PROC COPY IN=WORK OUT=USER;
+    SELECT Coffee_Sorted; /* Copy only the sorted dataset */
+RUN;
+
+
+/* This step is used to confirm the copy by printing a small part of the dataset from the library*/
+
+PROC PRINT DATA=USER.Coffee_Sorted (OBS=2);
+RUN;
+
+
+/* SQL Operations (PROC SQL), here I have some examples of SQL code within SAS */
+
+TITLE3 'SQL Operations (PROC SQL)';
+
+
+
+PROC SQL;
+    TITLE4 'Filter the Best Coffees';
+
+    SELECT
+        Country_of_Origin,
+        Owner,
+        Total_Cup_Points,
+        Aroma,
+        Acidity,
+        Processing_Method
+    FROM
+        work.Coffee
+    WHERE
+        Total_Cup_Points >= 88
+    ORDER BY
+        Total_Cup_Points DESC;
+
+
+
+    TITLE4 'Example of Aggregate Statistics (GROUP BY)';
+
+    SELECT
+        Variety,
+        COUNT(ID) AS Num_Samples,
+        AVG(Total_Cup_Points) AS Average_Score FORMAT=5.2
+    FROM
+        work.Coffee
+    WHERE
+        Variety NOT IN ('Other', 'Unknown', '') 
+    GROUP BY
+        Variety
+    HAVING
+        COUNT(ID) > 50 
+    ORDER BY
+        Average_Score DESC;
+
+QUIT;
+
+
+
+
+
+
+
